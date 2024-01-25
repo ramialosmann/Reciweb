@@ -1,0 +1,10 @@
+.nav-link,
+.dropdown
+{
+    cursor: pointer;
+}
+
+.accdropdownmenu 
+{
+    max-width: min-content;
+}

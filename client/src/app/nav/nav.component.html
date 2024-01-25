@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/">ReciWeb</a>
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link">My Recipes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Featured</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" >Our blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" >About Us</a>
+          </li>
+          <li class="nav-item">
+            <div class="dropdown" dropdown>
+            <a class="nav-link dropdown-toggle" dropdownToggle >Categories</a>
+            <div class="dropdown-menu" *dropdownMenu>
+                <a class="dropdown-item" >Breakfast</a>
+                <a class="dropdown-item" >Lunch</a>
+                <a class="dropdown-item" >Dinner</a>
+                <a class="dropdown-item" >Appetizers</a>
+                <a class="dropdown-item" >Desserts</a>
+                <a class="dropdown-item" >Vegetarian</a>
+                <a class="dropdown-item" >Snacks</a>
+                <a class="dropdown-item" >Beverages and Drinks</a>
+            </div>
+            </div>
+          </li>
+
+        </ul>
+        <form class="d-flex" style="margin-right: 150px;">
+          <input class="form-control me-sm-2" type="search" placeholder="Search">
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+    <ul class="navbar-nav" style="margin-right: 55px;">
+      <li class="nav-item">
+        <div class="dropdown" dropdown placement="bottom right" >
+        <a class="nav-link dropdown-toggle" dropdownToggle ><i class="bi bi-person" style="font-size: 24px;" ></i></a>
+        <div class="dropdown-menu accdropdownmenu dropdown-menu-right" *dropdownMenu>
+            <a class="dropdown-item" >Sign up</a>
+            <a class="dropdown-item" >Login</a>
+            <a class="dropdown-item" >Edit Profile</a>
+            <a class="dropdown-item" >Logout</a>
+        </div>
+        </div>
+      </li>
+    </ul>
+
+
+  </nav>

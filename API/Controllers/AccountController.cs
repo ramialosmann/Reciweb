@@ -44,6 +44,9 @@ namespace API.Controllers
                 PasswordSalt=hmac.Key
             };
 
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
+
             return new UserDto
             {
                 username=user.Username,

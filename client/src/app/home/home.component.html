@@ -1,0 +1,9 @@
+<div *ngIf="!(accservice.currentuser$ | async)" class="container">
+    <h1>ReciWeb : Recipes all around the world</h1>
+    <h3>Find Any recipe in the world and share yours with us <br> Sign up now !</h3>
+
+    <div class="container mt-3" style="margin-left: -15px;">
+        <button class="btn btn-primary btn-lg me-2" routerLink="/register">Sign up</button>
+        <button class="btn btn-info btn-lg me-2">Learn More</button>
+    </div>
+</div>
