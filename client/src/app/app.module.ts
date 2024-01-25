@@ -12,6 +12,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { MyRecipesComponent } from './recipes/my-recipes/my-recipes.component';
+import { CreaterecipeComponent } from './recipes/createrecipe/createrecipe.component';
+import { EditrecipeComponent } from './recipes/editrecipe/editrecipe.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { LoginComponent } from './login/login.component';
     NavComponent,
     HomeComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    MyRecipesComponent,
+    CreaterecipeComponent,
+    EditrecipeComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +34,9 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     FormsModule,
     BsDropdownModule.forRoot(),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(
+      {positionClass : 'toast-bottom-right'}
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

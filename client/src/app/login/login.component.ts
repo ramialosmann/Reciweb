@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   Login() {
     this.accservice.Login(this.model).subscribe({
       next : () => {
-        this.toastr.success("Welcome Back" + this.model.username );
+        this.toastr.success("Welcome Back ," + this.model.username + " ! " );
         this.router.navigateByUrl("/myrecipes");
       },
       error : error => console.log(error)

@@ -23,7 +23,7 @@ namespace API.Controllers
         }
         private async Task<bool> IsUserinUse(string username)
         {
-            return await _context.Users.AnyAsync(x => x.Username == username);
+            return await _context.Users.AnyAsync(x => x.Username.ToUpper() == username.ToUpper());
         }
 
 
@@ -66,7 +66,7 @@ namespace API.Controllers
                 return Unauthorized("Invalid Credentials");
             }
 
-            using var hmac = new HMACSHA512();
+            using var hmac = new HMACSHA512(user.PasswordSalt);
             var computedhash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.password));
             for(int i=0; i<computedhash.Length; i++)
             {
