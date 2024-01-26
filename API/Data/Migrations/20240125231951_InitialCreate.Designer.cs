@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240125124728_InitialCreate")]
+    [Migration("20240125231951_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -37,6 +37,25 @@ namespace API.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("API.Entities.Ingredient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("RecipesId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipesId");
+
+                    b.ToTable("Ingredient");
                 });
 
             modelBuilder.Entity("API.Entities.Photo", b =>
@@ -70,9 +89,6 @@ namespace API.Data.Migrations
                     b.Property<string>("category")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ingredients")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("instructions")
                         .HasColumnType("TEXT");
 
@@ -84,6 +100,17 @@ namespace API.Data.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("Recipes");
+                });
+
+            modelBuilder.Entity("API.Entities.Ingredient", b =>
+                {
+                    b.HasOne("API.Entities.Recipes", "Recipes")
+                        .WithMany("ingredients")
+                        .HasForeignKey("RecipesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Recipes");
                 });
 
             modelBuilder.Entity("API.Entities.Photo", b =>
@@ -115,6 +142,8 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.Recipes", b =>
                 {
+                    b.Navigation("ingredients");
+
                     b.Navigation("photos");
                 });
 #pragma warning restore 612, 618

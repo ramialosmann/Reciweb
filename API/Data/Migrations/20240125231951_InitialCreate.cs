@@ -32,7 +32,6 @@ namespace API.Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     title = table.Column<string>(type: "TEXT", nullable: true),
-                    ingredients = table.Column<string>(type: "TEXT", nullable: true),
                     instructions = table.Column<string>(type: "TEXT", nullable: true),
                     category = table.Column<string>(type: "TEXT", nullable: true),
                     AppUserId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -44,6 +43,26 @@ namespace API.Data.Migrations
                         name: "FK_Recipes_Users_AppUserId",
                         column: x => x.AppUserId,
                         principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Ingredient",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    RecipesId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ingredient", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Ingredient_Recipes_RecipesId",
+                        column: x => x.RecipesId,
+                        principalTable: "Recipes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -69,6 +88,11 @@ namespace API.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Ingredient_RecipesId",
+                table: "Ingredient",
+                column: "RecipesId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Photos_RecipesId",
                 table: "Photos",
                 column: "RecipesId");
@@ -82,6 +106,9 @@ namespace API.Data.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Ingredient");
+
             migrationBuilder.DropTable(
                 name: "Photos");
 

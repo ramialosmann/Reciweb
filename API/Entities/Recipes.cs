@@ -8,13 +8,13 @@ namespace API.Entities
         public int Id { get; set; }
         public string title { get; set; }
 
-        public string ingredients { get; set; }
+        public List<Ingredient> ingredients { get; set; } = new();
 
         public string instructions { get; set; }
 
         public string category { get; set; }
 
-        public List<Photo> photos { get; set; }
+        public List<Photo> photos { get; set; } = new();
 
         public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
