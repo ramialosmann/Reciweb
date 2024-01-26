@@ -11,5 +11,7 @@ namespace API.Entities
 
         public int RecipesId { get; set; }
         public Recipes Recipes { get; set; }
+
+
     }
 }

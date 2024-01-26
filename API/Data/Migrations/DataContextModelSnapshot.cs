@@ -28,7 +28,13 @@ namespace API.Data.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("BLOB");
 
+                    b.Property<string>("ProfilePhotoUrl")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Username")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("about")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -52,7 +58,7 @@ namespace API.Data.Migrations
 
                     b.HasIndex("RecipesId");
 
-                    b.ToTable("Ingredient");
+                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("API.Entities.Photo", b =>

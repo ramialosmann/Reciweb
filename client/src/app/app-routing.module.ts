@@ -7,6 +7,8 @@ import { authGuard } from './_guards/auth.guard';
 import { MyRecipesComponent } from './recipes/my-recipes/my-recipes.component';
 import { EditrecipeComponent } from './recipes/editrecipe/editrecipe.component';
 import { CreaterecipeComponent } from './recipes/createrecipe/createrecipe.component';
+import { MembersListComponent } from './members/members-list/members-list.component';
+import { MembersDetailsComponent } from './members/members-details/members-details.component';
 
 const routes: Routes = [
   {path: '' , component:HomeComponent},
@@ -16,12 +18,14 @@ const routes: Routes = [
    children: [
     {path:'myrecipes' , component:MyRecipesComponent},
     {path:'myrecipes/editrecipe' , component:EditrecipeComponent},
-    {path:'myrecipes/createrecipe' , component:CreaterecipeComponent}
+    {path:'myrecipes/createrecipe' , component:CreaterecipeComponent},
+    {path: 'members' , component:MembersListComponent},
+    {path: 'members/:id' , component:MembersDetailsComponent},
    ]
   },
   {path: 'register' , component:RegisterComponent},
   {path: 'login' , component:LoginComponent},
-  {path: '**' , component:HomeComponent}
+  {path: '**' , component:HomeComponent, pathMatch : 'full'}
 ];
 
 @NgModule({

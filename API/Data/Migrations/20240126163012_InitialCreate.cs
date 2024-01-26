@@ -18,7 +18,9 @@ namespace API.Data.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Username = table.Column<string>(type: "TEXT", nullable: true),
                     PasswordHash = table.Column<byte[]>(type: "BLOB", nullable: true),
-                    PasswordSalt = table.Column<byte[]>(type: "BLOB", nullable: true)
+                    PasswordSalt = table.Column<byte[]>(type: "BLOB", nullable: true),
+                    ProfilePhotoUrl = table.Column<string>(type: "TEXT", nullable: true),
+                    about = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -48,7 +50,7 @@ namespace API.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ingredient",
+                name: "Ingredients",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -58,9 +60,9 @@ namespace API.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ingredient", x => x.Id);
+                    table.PrimaryKey("PK_Ingredients", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Ingredient_Recipes_RecipesId",
+                        name: "FK_Ingredients_Recipes_RecipesId",
                         column: x => x.RecipesId,
                         principalTable: "Recipes",
                         principalColumn: "Id",
@@ -88,8 +90,8 @@ namespace API.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ingredient_RecipesId",
-                table: "Ingredient",
+                name: "IX_Ingredients_RecipesId",
+                table: "Ingredients",
                 column: "RecipesId");
 
             migrationBuilder.CreateIndex(
@@ -107,7 +109,7 @@ namespace API.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Ingredient");
+                name: "Ingredients");
 
             migrationBuilder.DropTable(
                 name: "Photos");
