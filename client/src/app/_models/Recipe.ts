@@ -5,6 +5,7 @@ import { Photo } from "./Photo";
 export interface Recipe {
     id: number;
     title: string;
+    mainPhotoUrl : string;
     ingredients: Ingredient[];
     instructions: string;
     category: string;

@@ -9,6 +9,7 @@ namespace API.Entities
 
         public string Url { get; set; }
 
+        public bool isMain { get; set; }
         public int RecipesId { get; set; }
         public Recipes Recipes { get; set; }
 

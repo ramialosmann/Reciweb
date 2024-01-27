@@ -6,6 +6,7 @@ namespace API.DTOs
     {
         public int Id { get; set; }
         public string title { get; set; }
+        public string MainPhotoUrl { get; set; }
 
         public List<IngredientDto> ingredients { get; set; }
 

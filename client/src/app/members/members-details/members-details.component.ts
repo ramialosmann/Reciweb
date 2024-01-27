@@ -1,20 +1,27 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Ingredient } from 'src/app/_models/Ingredient';
+import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { Member } from 'src/app/_models/Member';
 import { Recipe } from 'src/app/_models/Recipe';
 import { MemberService } from 'src/app/_services/member.service';
 
 @Component({
   selector: 'app-members-details',
+  standalone: true,
   templateUrl: './members-details.component.html',
-  styleUrls: ['./members-details.component.css']
+  styleUrls: ['./members-details.component.css'],
+  imports: [
+    CommonModule,
+    TabsModule,
+    GalleryModule
+  ]
 })
 export class MembersDetailsComponent implements OnInit {
   member : Member | undefined;
-  recipe : Recipe | undefined;
-  recipes : Recipe[] = [];
-  ingredients : Ingredient[] = []
+  images : GalleryItem[] = [];
+
   constructor(private memberservice : MemberService, private route : ActivatedRoute) {
 
   }
@@ -29,24 +36,18 @@ export class MembersDetailsComponent implements OnInit {
     this.memberservice.getMember(username).subscribe({
       next : member => {
         this.member = member;
-        this.getRecipes();
+        
       }
     })
   }
 
-  getRecipes() {
-     if(!this.member) return;
-     for(const recipe of this.member.recipes) {
-      this.recipe = recipe;
-      this.getIngredients();
-      this.recipes.push(recipe)
-     }
-  }
-  getIngredients() {
-    if(!this.recipe) return;
-    for(const ingredient of this.recipe?.ingredients) {
-      this.ingredients.push(ingredient);
+  getImages(recipe: Recipe) {
+    if (!this.member) return;
+    this.images = []; 
+    for (const photo of recipe.photos) {
+        this.images.push(new ImageItem({ src: photo.url, thumb: photo.url }));
     }
   }
+
 
 }

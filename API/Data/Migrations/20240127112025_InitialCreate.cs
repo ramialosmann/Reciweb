@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -17,10 +18,12 @@ namespace API.Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Username = table.Column<string>(type: "TEXT", nullable: true),
+                    DateOfBirth = table.Column<DateOnly>(type: "TEXT", nullable: false),
                     PasswordHash = table.Column<byte[]>(type: "BLOB", nullable: true),
                     PasswordSalt = table.Column<byte[]>(type: "BLOB", nullable: true),
                     ProfilePhotoUrl = table.Column<string>(type: "TEXT", nullable: true),
-                    about = table.Column<string>(type: "TEXT", nullable: true)
+                    about = table.Column<string>(type: "TEXT", nullable: true),
+                    specialities = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -76,6 +79,7 @@ namespace API.Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Url = table.Column<string>(type: "TEXT", nullable: true),
+                    isMain = table.Column<bool>(type: "INTEGER", nullable: false),
                     RecipesId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
