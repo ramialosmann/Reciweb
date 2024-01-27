@@ -18,8 +18,12 @@ import { EditrecipeComponent } from './recipes/editrecipe/editrecipe.component';
 import { MembersListComponent } from './members/members-list/members-list.component';
 import { MembersDetailsComponent } from './members/members-details/members-details.component';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
-import { MemberCardComponent } from './members/member-card/member-card.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { MemberRecipeCardComponent } from './members/members-details/member-recipe-card/member-recipe-card.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +37,9 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
     EditrecipeComponent,
     MembersListComponent,
     MembersDetailsComponent,
-    MemberCardComponent
+    MemberCardComponent,
+    MemberRecipeCardComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,9 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot(
       {positionClass : 'toast-bottom-right'}
-    )
+    ),
+    ModalModule.forRoot(),
+    TooltipModule.forRoot()
   ],
   providers: [
     {provide : HTTP_INTERCEPTORS , useClass:ErrorInterceptor , multi:true},

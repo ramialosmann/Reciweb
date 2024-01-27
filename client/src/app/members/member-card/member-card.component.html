@@ -4,12 +4,24 @@
     <div class="card-img-wrapper text-center ">
         <img src="{{member.profilePhotoUrl}}" alt="{{member.username}}">
         <ul class="list-inline member-icons animate text-center mt-1">
-            <li class="list-inline-item"><i class="bi bi-person"></i></li>
+            <li class="list-inline-item"><i class="bi bi-person" routerLink="/members/{{member.username}}"></i></li>
             <li class="list-inline-item"><i class="bi bi-heart"></i></li>
-            <li class="list-inline-item"><i class="bi bi-question-circle"></i></li>
+            <li class="list-inline-item"><i class="bi bi-question-circle" (click)="openModal(about)"></i></li>
         </ul>
     </div>
     <div class="card-body mt-2">
       
     </div>
   </div>
+
+  <ng-template #about>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{member?.username}}</h4>
+      <button type="button" class="btn-close close pull-right" (click)="modalref?.hide()">
+        <span  class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      {{member?.about}}
+    </div>
+  </ng-template>

@@ -1,0 +1,14 @@
+
+<div class="card mb-3 text-white bg-danger" *ngIf="recipe" style="text-align: left;">
+    <h3 class="card-header">{{recipe.title}}</h3>
+    <div class="card-body">
+      <h5 class="card-title"><strong>Category : </strong> {{recipe.category}}</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Ingredients : </strong></li>
+      <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">{{ingredient.name}}</li>
+    </ul>
+    <div class="card-body">
+        <p class="card-text"><strong>Instructions :</strong> {{recipe.instructions}}</p>
+    </div>
+</div>

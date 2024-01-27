@@ -1,1 +1,11 @@
-<p>members-details works!</p>
+<div class="text-center" *ngIf="member">
+    <img src="{{member.profilePhotoUrl}}" class="profilepic mb-2">
+    <h1>{{member.username}}</h1>
+    <p class="lead">{{member.about}}</p>
+    <div class="row" *ngFor="let recipe of recipes" >
+        <div class="col-4">
+        <app-member-recipe-card [recipe]="recipe" ></app-member-recipe-card>
+        </div>
+    </div>
+
+</div>

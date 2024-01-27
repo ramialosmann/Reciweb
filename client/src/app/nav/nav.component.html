@@ -27,12 +27,9 @@
     </div>
     <ul class="navbar-nav" style="margin-right: 55px;">
       <li class="nav-item">
-        <div class="dropdown" dropdown placement="right" >
-          <a class="nav-link"><i class="bi bi-plus-square" style="font-size: 24px;" dropdownToggle></i></a>
-          <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
-            <a class="dropdown-item" routerLink="/myrecipes/createrecipe" >Create new recipe</a>
-        </div>
-        </div>
+          <a class="nav-link" tooltip="Create new recipe" placement="left" containerClass="custom-tooltip"
+          ><i class="bi bi-plus-square" style="font-size: 24px;" ></i>
+          </a>
       </li>
       <li class="nav-item">
         <div class="dropdown" dropdown placement="bottom right"  >
