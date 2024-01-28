@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240127112025_InitialCreate")]
+    [Migration("20240128193928_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -107,6 +107,9 @@ namespace API.Data.Migrations
 
                     b.Property<string>("instructions")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("isPublic")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("title")
                         .HasColumnType("TEXT");

@@ -6,6 +6,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 
 
@@ -20,7 +21,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     ModalModule.forRoot(),
     TooltipModule.forRoot(),
     TabsModule.forRoot(),
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    TypeaheadModule.forRoot(),
   ],
   exports: [
     BsDropdownModule,
@@ -28,7 +30,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     ModalModule,
     TooltipModule,
     TabsModule,
-    CarouselModule
+    CarouselModule,
+    TypeaheadModule
   ]
 })
 export class SharedModule { }

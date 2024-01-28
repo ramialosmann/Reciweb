@@ -1,5 +1,5 @@
 .card-img-wrapper img {
-    border-radius: 13px;
+    border-radius: 73px;
     position: relative;
 }
 .card:hover .member-icons {
@@ -13,7 +13,7 @@
 
 
 .card:hover img {
-    transform: scale(1.1 , 1.1);
+    transform: scale(1 , 1);
     transition-duration: 0.7s;
     transition-timing-function: ease-out;
     opacity: 0.85;
@@ -21,7 +21,7 @@
 }
 
 .card img {
-    transform: scale(1 ,1);
+    transform: scale(0.7 ,0.7);
     transition-duration: 0.7s;
     transition-timing-function: ease-out;
     opacity: 1;
@@ -31,7 +31,7 @@
 
 .member-icons {
     position: absolute;
-    bottom: 0;
+    bottom: -5%;
     left: 0;
     right: 0;
     margin-left: auto;

@@ -9,6 +9,7 @@ import { EditrecipeComponent } from './recipes/editrecipe/editrecipe.component';
 import { CreaterecipeComponent } from './recipes/createrecipe/createrecipe.component';
 import { MembersListComponent } from './members/members-list/members-list.component';
 import { MembersDetailsComponent } from './members/members-details/members-details.component';
+import { EditProfileComponent } from './members/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   {path: '' , component:HomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
     {path:'myrecipes/createrecipe' , component:CreaterecipeComponent},
     {path: 'members' , component:MembersListComponent},
     {path: 'members/:username' , component:MembersDetailsComponent},
+    {path:'member/editprofile' , component:EditProfileComponent}
    ]
   },
   {path: 'register' , component:RegisterComponent},

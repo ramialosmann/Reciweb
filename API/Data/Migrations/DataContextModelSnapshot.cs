@@ -105,6 +105,9 @@ namespace API.Data.Migrations
                     b.Property<string>("instructions")
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("isPublic")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("title")
                         .HasColumnType("TEXT");
 

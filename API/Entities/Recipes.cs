@@ -2,10 +2,13 @@
 
 namespace API.Entities
 {
+
+
     [Table("Recipes")]
     public class Recipes
     {
         public int Id { get; set; }
+        public bool isPublic { get; set; }
         public string title { get; set; }
 
         public List<Ingredient> ingredients { get; set; } = new();
@@ -19,4 +22,5 @@ namespace API.Entities
         public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
     }
+
 }

@@ -17,6 +17,8 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { SharedModule } from './_modules/shared.module';
+import { EditProfileComponent } from './members/edit-profile/edit-profile.component';
+import { MembersDetailsComponent } from './members/members-details/members-details.component';
 
 
 
@@ -32,6 +34,8 @@ import { SharedModule } from './_modules/shared.module';
     EditrecipeComponent,
     MembersListComponent,
     MemberCardComponent,
+    MembersDetailsComponent,
+    EditProfileComponent,
 
   ],
   imports: [

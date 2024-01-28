@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="col-4" *ngIf="member">
+        <div class="card mb-3 bg-secondary text-white">
+            <div class="card-img-wrapper justify-content-center">
+                <img  src="{{member.profilePhotoUrl}}" alt="{{member.username}}">
+            </div>
+            <h3 class="card-header mt-3">{{member.username}} <p class="card-subtitle mt-1">
+                <strong>Age </strong>
+                {{member.age}}</p></h3>
+            <form >
+            <div class="card-body">
+              <p class="card-text"><strong>ABOUT :</strong></p>
+              <textarea name="about" [(ngModel)]="member.about" rows="10" class="form-control"></textarea>
+            
+            </div>
+            <div class="card-body">
+            <p class="card-text"><strong>SPECIALITY : </strong></p>
+            <textarea name="speciality" [(ngModel)]="member.specialities"  rows="8" class="form-control"></textarea>
+            </div>
+            </form>
+    </div>
+    </div>
+    
+    <div class="col-8 " *ngIf="member">
+        <div class="mb-3 mt-2 d-flex">
+            <h1>Edit Recipes</h1> <button class="ms-4 btn btn-outline-success text-white btn-lg">Save Changes</button>
+        </div>
+        <tabset class="recipe-tabs" >
+            <tab *ngFor="let recipe of member.recipes" heading="{{recipe.title}}" class="mt-2">
+                <tabset class="subrecipe-tabs">
+                    <tab heading="Ingredients" class="tab">
+                        <ul class="list-group mt-3">
+                            <li class="list-group-item justify-content-between align-items-center" 
+                                *ngFor="let ingredient of recipe.ingredients">
+                                <textarea 
+                                name="{{ingredient.name}}"
+                                [(ngModel)]="ingredient.name"
+                                class="form-control" 
+                                rows="1"></textarea>
+                            </li>
+                            <button class="btn btn-outline-secondary mt-2 mb-2 text-white" style="max-width: fit-content; margin-left: 32px;">+ Add Ingredient</button>
+                        </ul>
+                    </tab>
+                    <tab heading="Instructions" >
+                        <h6 class="mt-3 ">
+                            <textarea 
+                            name="{{recipe.instructions}}"
+                            [(ngModel)]="recipe.instructions"
+                            class="form-control" 
+                            rows="8"></textarea>
+
+                        </h6>
+                    </tab>
+                    <tab heading="Category" >
+                        <h1 class="mt-3">
+                            <textarea 
+                            name="{{recipe.category}}"
+                            [(ngModel)]="recipe.category"
+                            [typeahead]="categories"
+                            class="form-control" 
+                            rows="1"></textarea>
+                        </h1>
+                    </tab>
+                </tabset>
+
+                <button class="btn btn-outline-danger mt-2">Delete this recipe</button>
+    
+            </tab>
+        </tabset>
+    </div>
+    </div>
+    

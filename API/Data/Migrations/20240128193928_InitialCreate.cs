@@ -36,6 +36,7 @@ namespace API.Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    isPublic = table.Column<bool>(type: "INTEGER", nullable: false),
                     title = table.Column<string>(type: "TEXT", nullable: true),
                     instructions = table.Column<string>(type: "TEXT", nullable: true),
                     category = table.Column<string>(type: "TEXT", nullable: true),
