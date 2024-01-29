@@ -19,6 +19,7 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { SharedModule } from './_modules/shared.module';
 import { EditProfileComponent } from './members/edit-profile/edit-profile.component';
 import { MembersDetailsComponent } from './members/members-details/members-details.component';
+import { ExploreRecipesComponent } from './explore-recipes/explore-recipes.component';
 
 
 
@@ -36,6 +37,7 @@ import { MembersDetailsComponent } from './members/members-details/members-detai
     MemberCardComponent,
     MembersDetailsComponent,
     EditProfileComponent,
+    ExploreRecipesComponent,
 
   ],
   imports: [

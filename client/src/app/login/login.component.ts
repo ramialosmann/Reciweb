@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     this.accservice.Login(this.model).subscribe({
       next : () => {
         this.toastr.success("Welcome Back ," + this.model.username + " ! " );
-        this.router.navigateByUrl("/myrecipes");
+        this.router.navigateByUrl( this.model.username + "/myrecipes");
       },
       error : error => console.log(error)
     })

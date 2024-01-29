@@ -1,9 +1,9 @@
 ﻿using API.DTOs;
-using API.Entities;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace API.Controllers
 {
@@ -37,6 +37,26 @@ namespace API.Controllers
             var user = await _userrepo.GetMemberAsync(username);
 
             return _mapper.Map<MemberDto>(user);
+        }
+
+
+        [HttpPut]
+
+        public async Task<ActionResult> UpdateUserProfile (MemberProfileUpdateDto updateDto)
+        {
+            var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await _userrepo.GetByUsernameAsync(username);
+
+            if(user == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(updateDto, user);
+
+            if(await _userrepo.SaveAllAsync()) { return NoContent(); }
+
+            return BadRequest("Failed to update profile"); 
         }
 
 

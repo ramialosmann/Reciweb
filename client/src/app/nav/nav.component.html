@@ -14,7 +14,7 @@
                >ReciChefs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/myrecipes" 
+            <a class="nav-link" (click) = "NavigateToMyRecipes()"
                *ngIf="(this.accservice.currentusersource | async)"
                routerLinkActive="active"       
                >My Recipes</a>

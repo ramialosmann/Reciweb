@@ -1,0 +1,41 @@
+
+<accordion [closeOthers]="true">
+    <div *ngFor="let member of members">
+        <ng-container  *ngFor="let recipe of member.recipes">
+    <accordion-group *ngIf="recipe.isPublic" heading="{{recipe.title}}">
+        <div class="row mb-2">
+            <div class="col-8">
+            <strong>Category : </strong> {{recipe.category}}
+            </div>
+        </div>
+        <div class="row">
+        <div class="col-2">
+        <strong>Ingredients : </strong> <li *ngFor="let ing of recipe.ingredients "> {{ing.name}}</li>
+        </div>
+        <div class="col-4">
+            <strong>Instructions : </strong> {{recipe.instructions}}
+        </div>
+        <div class="col-6" style="max-width: 30%; max-height: 50px;"  >
+            <div class="container" style="max-width: fit-content;">
+                <div *ngFor="let photo of recipe.photos" >
+                  <img *ngIf="photo.isMain" src="{{photo.url}}" alt="" class="form-control">
+                </div>
+            </div>   
+        </div>
+
+     </div>
+     <div class="row">
+        <div class="col-8 toprofile" style="cursor: pointer;" >
+            <a routerLink="/members/{{member.username}}"
+            tooltip="Go to {{member.username}}'s Profile" 
+            placement="bottom">
+            <strong>Uploaded by {{member.username}}</strong>
+        </a>
+            <img src="{{member.profilePhotoUrl}}" alt="" class="profilephoto">
+        </div>
+     </div>
+    </accordion-group>
+       </ng-container>
+      </div>
+
+  </accordion>

@@ -7,6 +7,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 
 
@@ -23,6 +25,8 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
     TabsModule.forRoot(),
     CarouselModule.forRoot(),
     TypeaheadModule.forRoot(),
+    AccordionModule.forRoot(),
+    AlertModule.forRoot()
   ],
   exports: [
     BsDropdownModule,
@@ -31,7 +35,9 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
     TooltipModule,
     TabsModule,
     CarouselModule,
-    TypeaheadModule
+    TypeaheadModule,
+    AccordionModule,
+    AlertModule
   ]
 })
 export class SharedModule { }

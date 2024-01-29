@@ -10,13 +10,14 @@ namespace API.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<AppUser, MemberDto>()
-            .ForMember(src => src.Age,
+            .ForMember(dest => dest.Age,
             opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
             CreateMap<Recipes, RecipesDto>()
             .ForMember(dest => dest.MainPhotoUrl, opt =>
             opt.MapFrom(src => src.photos.FirstOrDefault(x => x.isMain).Url));
             CreateMap<Ingredient, IngredientDto>();
             CreateMap<Photo, PhotoDto>();
+            CreateMap<MemberProfileUpdateDto, AppUser>();
         }
     }
 }

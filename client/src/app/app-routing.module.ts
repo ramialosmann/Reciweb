@@ -10,6 +10,8 @@ import { CreaterecipeComponent } from './recipes/createrecipe/createrecipe.compo
 import { MembersListComponent } from './members/members-list/members-list.component';
 import { MembersDetailsComponent } from './members/members-details/members-details.component';
 import { EditProfileComponent } from './members/edit-profile/edit-profile.component';
+import { ExploreRecipesComponent } from './explore-recipes/explore-recipes.component';
+import { preventunsavededitGuard } from './_guards/preventunsavededit.guard';
 
 const routes: Routes = [
   {path: '' , component:HomeComponent},
@@ -17,12 +19,13 @@ const routes: Routes = [
    runGuardsAndResolvers:'always',
    canActivate: [authGuard],
    children: [
-    {path:'myrecipes' , component:MyRecipesComponent},
-    {path:'myrecipes/editrecipe' , component:EditrecipeComponent},
-    {path:'myrecipes/createrecipe' , component:CreaterecipeComponent},
+    {path:':username/myrecipes' , component:MyRecipesComponent},
+    {path:':username/myrecipe/editrecipe/:title' , component:EditrecipeComponent , canDeactivate: [preventunsavededitGuard]},
+    {path:':username/myrecipe/new/createrecipe' , component:CreaterecipeComponent},
     {path: 'members' , component:MembersListComponent},
     {path: 'members/:username' , component:MembersDetailsComponent},
-    {path:'member/editprofile' , component:EditProfileComponent}
+    {path:'member/editprofile' , component:EditProfileComponent, canDeactivate : [preventunsavededitGuard]},
+    {path:'explore' , component:ExploreRecipesComponent},
    ]
   },
   {path: 'register' , component:RegisterComponent},

@@ -6,9 +6,9 @@
         <span class="badge bg-primary mt-2" *ngIf="recipe.isPublic">Public</span>
         <span class="badge bg-primary mt-2" *ngIf="!recipe.isPublic">Private</span>
         <tabset class="subrecipe-tabs">
-            <tab heading="Ingredients" class="tab">
-                <ul class="list-group mt-3 ">
-                    <li class="list-group-item justify-content-between align-items-center" 
+            <tab heading="Ingredients " class="tab">
+                <ul class="list mt-3 ">
+                    <li 
                         *ngFor="let ingredient of recipe.ingredients">
                         {{ingredient.name}}
                     </li>

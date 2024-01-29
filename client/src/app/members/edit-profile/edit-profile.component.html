@@ -4,69 +4,81 @@
             <div class="card-img-wrapper justify-content-center">
                 <img  src="{{member.profilePhotoUrl}}" alt="{{member.username}}">
             </div>
-            <h3 class="card-header mt-3">{{member.username}} <p class="card-subtitle mt-1">
-                <strong>Age </strong>
-                {{member.age}}</p></h3>
-            <form >
-            <div class="card-body">
-              <p class="card-text"><strong>ABOUT :</strong></p>
-              <textarea name="about" [(ngModel)]="member.about" rows="10" class="form-control"></textarea>
+            <div class="card-body mt-3">
+                <i class="bi bi-lock me-3"></i><strong>Account and Security</strong>
+            </div>
             
-            </div>
             <div class="card-body">
-            <p class="card-text"><strong>SPECIALITY : </strong></p>
-            <textarea name="speciality" [(ngModel)]="member.specialities"  rows="8" class="form-control"></textarea>
+                <i class="bi bi-bell me-3"></i><strong>Notfications</strong>
             </div>
-            </form>
-    </div>
-    </div>
-    
-    <div class="col-8 " *ngIf="member">
-        <div class="mb-3 mt-2 d-flex">
-            <h1>Edit Recipes</h1> <button class="ms-4 btn btn-outline-success text-white btn-lg">Save Changes</button>
+            
+            <div class="card-body">
+                <i class="bi bi-exclamation-circle me-3"></i><strong>Account info</strong>
+            </div>
         </div>
-        <tabset class="recipe-tabs" >
-            <tab *ngFor="let recipe of member.recipes" heading="{{recipe.title}}" class="mt-2">
-                <tabset class="subrecipe-tabs">
-                    <tab heading="Ingredients" class="tab">
-                        <ul class="list-group mt-3">
-                            <li class="list-group-item justify-content-between align-items-center" 
-                                *ngFor="let ingredient of recipe.ingredients">
-                                <textarea 
-                                name="{{ingredient.name}}"
-                                [(ngModel)]="ingredient.name"
-                                class="form-control" 
-                                rows="1"></textarea>
-                            </li>
-                            <button class="btn btn-outline-secondary mt-2 mb-2 text-white" style="max-width: fit-content; margin-left: 32px;">+ Add Ingredient</button>
-                        </ul>
-                    </tab>
-                    <tab heading="Instructions" >
-                        <h6 class="mt-3 ">
-                            <textarea 
-                            name="{{recipe.instructions}}"
-                            [(ngModel)]="recipe.instructions"
-                            class="form-control" 
-                            rows="8"></textarea>
+       
+        <alert type="info" *ngIf="EditForm.dirty">
+            <strong>Changes were made , </strong> Any unsaved changes will be lost
+          </alert>
 
-                        </h6>
-                    </tab>
-                    <tab heading="Category" >
-                        <h1 class="mt-3">
-                            <textarea 
-                            name="{{recipe.category}}"
-                            [(ngModel)]="recipe.category"
-                            [typeahead]="categories"
-                            class="form-control" 
-                            rows="1"></textarea>
-                        </h1>
-                    </tab>
-                </tabset>
+    </div>
 
-                <button class="btn btn-outline-danger mt-2">Delete this recipe</button>
-    
-            </tab>
-        </tabset>
+    <div class="col-8">
+        <form #EditForm="ngForm" id="editform" (ngSubmit)="updateMember()">
+            <div class="d-flex">
+             <h1 class="me-5">Edit Profile</h1> 
+             <button class="btn btn-outline-success btn-lg" type="submit" 
+             [disabled]="!EditForm.dirty">Save Changes</button>
+            </div>
+    <tabset *ngIf="member">
+        <tab heading="Personal Information">
+            <div class="mt-2">
+            <div class="row"> 
+            <div class="col-2">
+            <h3><strong>Name :</strong></h3>
+            <textarea 
+            name="name" 
+            [(ngModel)]="member.name"
+            rows="1"
+            class="form-control"
+            ></textarea>
+            </div>
+            <div class="col-4">
+                <h3><strong>About :</strong></h3>
+                <textarea 
+                name="about" 
+                [(ngModel)]="member.about"
+                rows="8"
+                class="form-control"
+                ></textarea>
+            </div>
+            <div class="col-4">
+                <h3><strong>Specialities :</strong></h3>
+                <textarea 
+                name="specialities" 
+                [(ngModel)]="member.specialities"
+                rows="5"
+                class="form-control"
+                ></textarea>
+            </div>
+            </div>
+            </div>
+        </tab>
+        <tab heading="Recipes">
+        <accordion class="mt-3">
+          <accordion-group *ngFor="let recipe of member.recipes" heading="{{recipe.title}}">
+               <div class="mt-1">
+                <button class="btn btn-outline-success me-2" (click)="editRecipeHover(recipe.title)">Edit Recipe</button>
+                <button class="btn btn-outline-danger me-5">Delete Recipe</button>
+                <span class="badge bg-primary ms-5" *ngIf="recipe.isPublic">Public</span>
+                <span class="badge bg-primary ms-5" *ngIf="!recipe.isPublic">Private</span>
+               </div>
+          </accordion-group>
+          </accordion>
+
+        </tab>
+    </tabset>
+        </form>
     </div>
-    </div>
-    
+
+ 

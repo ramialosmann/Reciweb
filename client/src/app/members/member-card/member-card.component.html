@@ -1,8 +1,8 @@
 
 <div class="card border-secondary mb-3" *ngIf="member" data-bs-theme="dark">
-    <h6 class="card-header mb-2 text-center"> <i class="bi bi-person"></i> {{member.username}}</h6>
-    <div class="card-img-wrapper text-center ">
-        <img src="{{member.profilePhotoUrl}}" alt="{{member.username}}">
+    <h6 class="card-header mb-2 text-center" style="font-size: 13px ;">{{member.username}}</h6>
+    <div class="card-img-wrapper text-center form-control">
+        <img src="{{member.profilePhotoUrl}}" alt="{{member.username}}" class="form-control">
         <ul class="list-inline member-icons animate text-center mt-1">
             <li class="list-inline-item"><i class="bi bi-person" routerLink="/members/{{member.username}}"></i></li>
             <li class="list-inline-item"><i class="bi bi-heart"></i></li>

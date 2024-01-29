@@ -1,0 +1,28 @@
+.photo {
+    margin-left: -100px;
+    margin-right: auto;
+    margin-top: -105px;
+    transform: scale(0.5, 0.5);
+    border-radius: 30px;
+    align-items: left;
+    display: block;
+    
+}
+
+.profilephoto {
+    margin-right: auto;
+    margin-left: -30px;
+    transform: scale(0.25, 0.25);
+    border-radius: 90px;
+    align-items: right;
+    display: inline;
+    transition-duration: 0.5s;
+    transition: ease-in-out;
+}
+
+.toprofile :hover {
+   transform: scale(0.4 , 0.4);
+   transition-duration: 0.9s;
+   transition: ease-in-out;
+   color: rgb(79, 147, 189);
+}

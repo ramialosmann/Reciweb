@@ -5,6 +5,8 @@
         public int Id { get; set; }
         public string Username { get; set; }
 
+        public string Name { get; set; }
+
         public DateOnly DateOfBirth { get; set; }
 
         public byte[] PasswordHash { get; set; }
