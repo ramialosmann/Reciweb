@@ -93,7 +93,7 @@ namespace API.Data.Migrations
                     b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("API.Entities.Recipes", b =>
+            modelBuilder.Entity("API.Entities.Recipe", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -123,7 +123,7 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.Ingredient", b =>
                 {
-                    b.HasOne("API.Entities.Recipes", "Recipes")
+                    b.HasOne("API.Entities.Recipe", "Recipes")
                         .WithMany("ingredients")
                         .HasForeignKey("RecipesId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -134,7 +134,7 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.Photo", b =>
                 {
-                    b.HasOne("API.Entities.Recipes", "Recipes")
+                    b.HasOne("API.Entities.Recipe", "Recipes")
                         .WithMany("photos")
                         .HasForeignKey("RecipesId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -143,7 +143,7 @@ namespace API.Data.Migrations
                     b.Navigation("Recipes");
                 });
 
-            modelBuilder.Entity("API.Entities.Recipes", b =>
+            modelBuilder.Entity("API.Entities.Recipe", b =>
                 {
                     b.HasOne("API.Entities.AppUser", "AppUser")
                         .WithMany("Recipes")
@@ -159,7 +159,7 @@ namespace API.Data.Migrations
                     b.Navigation("Recipes");
                 });
 
-            modelBuilder.Entity("API.Entities.Recipes", b =>
+            modelBuilder.Entity("API.Entities.Recipe", b =>
                 {
                     b.Navigation("ingredients");
 

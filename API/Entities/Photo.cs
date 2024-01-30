@@ -11,7 +11,7 @@ namespace API.Entities
 
         public bool isMain { get; set; }
         public int RecipesId { get; set; }
-        public Recipes Recipes { get; set; }
+        public Recipe Recipes { get; set; }
 
 
     }

@@ -9,6 +9,6 @@ namespace API.Entities
         public string Name { get; set; }
 
         public int RecipesId { get; set; }
-        public Recipes Recipes { get; set; }
+        public Recipe Recipes { get; set; }
     }
 }

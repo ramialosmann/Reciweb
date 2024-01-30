@@ -2,10 +2,9 @@
 
 namespace API.Entities
 {
-
-
     [Table("Recipes")]
-    public class Recipes
+
+    public class Recipe
     {
         public int Id { get; set; }
         public bool isPublic { get; set; }

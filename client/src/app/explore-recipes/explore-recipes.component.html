@@ -1,7 +1,6 @@
 
 <accordion [closeOthers]="true">
-    <div *ngFor="let member of members">
-        <ng-container  *ngFor="let recipe of member.recipes">
+        <ng-container  *ngFor="let recipe of recipes">
     <accordion-group *ngIf="recipe.isPublic" heading="{{recipe.title}}">
         <div class="row mb-2">
             <div class="col-8">
@@ -24,18 +23,20 @@
         </div>
 
      </div>
-     <div class="row">
+     <div class="row" >
         <div class="col-8 toprofile" style="cursor: pointer;" >
-            <a routerLink="/members/{{member.username}}"
+            <ng-container *ngFor="let member of members">
+            <a *ngIf="CompareMemberAndRecipe(recipe , member)"  routerLink="/members/{{member.username}}"
             tooltip="Go to {{member.username}}'s Profile" 
             placement="bottom">
             <strong>Uploaded by {{member.username}}</strong>
-        </a>
-            <img src="{{member.profilePhotoUrl}}" alt="" class="profilephoto">
+           </a>
+          </ng-container>
+            
         </div>
      </div>
     </accordion-group>
        </ng-container>
-      </div>
+      
 
   </accordion>

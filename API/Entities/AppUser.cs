@@ -18,7 +18,7 @@
 
         public string specialities { get; set; }
 
-        public List<Recipes> Recipes { get; set; } = new();
+        public List<Recipe> Recipes { get; set; } = new();
 
 
     }
