@@ -1,5 +1,6 @@
 ﻿using API.Data;
 using API.DTOs;
+using API.Entities;
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -25,6 +26,15 @@ namespace API.Services
                          .ToListAsync();
 
                 
+        }
+
+        public void Update(Recipe recipe)
+        {
+            _context.Entry(recipe).State=EntityState.Modified;
+        }
+        public async Task<bool> SaveAllAsync( )
+        {
+            return await _context.SaveChangesAsync()>0;
         }
     }
 }

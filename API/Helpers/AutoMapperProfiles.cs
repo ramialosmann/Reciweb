@@ -18,6 +18,9 @@ namespace API.Helpers
             CreateMap<Ingredient, IngredientDto>();
             CreateMap<Photo, PhotoDto>();
             CreateMap<MemberProfileUpdateDto, AppUser>();
+            CreateMap<RecipeUpdateDto, Recipe>();
+            CreateMap<IngredientDto, Ingredient>();
+            CreateMap<PhotoDto, Photo>();
         }
     }
 }

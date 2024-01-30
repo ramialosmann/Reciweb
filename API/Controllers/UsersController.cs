@@ -53,6 +53,7 @@ namespace API.Controllers
             }
 
             _mapper.Map(updateDto, user);
+            
 
             if(await _userrepo.SaveAllAsync()) { return NoContent(); }
 
