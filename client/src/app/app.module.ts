@@ -20,6 +20,8 @@ import { SharedModule } from './_modules/shared.module';
 import { EditProfileComponent } from './members/edit-profile/edit-profile.component';
 import { MembersDetailsComponent } from './members/members-details/members-details.component';
 import { ExploreRecipesComponent } from './explore-recipes/explore-recipes.component';
+import { RecipeCardComponent } from './explore-recipes/recipe-card/recipe-card.component';
+import { EditIngredientsComponent } from './recipes/editrecipe/edit-ingredients/edit-ingredients.component';
 
 
 
@@ -38,6 +40,9 @@ import { ExploreRecipesComponent } from './explore-recipes/explore-recipes.compo
     MembersDetailsComponent,
     EditProfileComponent,
     ExploreRecipesComponent,
+    RecipeCardComponent,
+    EditIngredientsComponent,
+
 
   ],
   imports: [

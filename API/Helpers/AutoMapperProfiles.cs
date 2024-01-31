@@ -18,9 +18,12 @@ namespace API.Helpers
             CreateMap<Ingredient, IngredientDto>();
             CreateMap<Photo, PhotoDto>();
             CreateMap<MemberProfileUpdateDto, AppUser>();
-            CreateMap<RecipeUpdateDto, Recipe>();
             CreateMap<IngredientDto, Ingredient>();
             CreateMap<PhotoDto, Photo>();
+            CreateMap<RecipeUpdateDto, Recipe>().ForMember(dest => dest.ingredients, opt =>
+            opt.MapFrom(src => src.ingredients));
+            
+
         }
     }
 }

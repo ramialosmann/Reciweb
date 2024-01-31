@@ -1,11 +1,12 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { findIndex } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 import { Ingredient } from 'src/app/_models/Ingredient';
 import { Member } from 'src/app/_models/Member';
 import { Recipe } from 'src/app/_models/Recipe';
 import { MemberService } from 'src/app/_services/member.service';
+import { RecipeService } from 'src/app/_services/recipe.service';
 
 @Component({
   selector: 'app-editrecipe',
@@ -13,7 +14,7 @@ import { MemberService } from 'src/app/_services/member.service';
   styleUrls: ['./editrecipe.component.css']
 })
 export class EditrecipeComponent implements OnInit {
-  @ViewChild('EditRecipeForm')  editform : NgForm | undefined;
+  @ViewChild('editrecipeform')  editform : NgForm | undefined;
   @HostListener('window:beforeunload' , ['$event']) unloadnotfication($event : any) {
     if(this.editform?.dirty) $event.returnValue =  true;
   }
@@ -21,7 +22,8 @@ export class EditrecipeComponent implements OnInit {
   recipe : Recipe | undefined;
 
 
-  constructor(private memberservice : MemberService , private route : ActivatedRoute) {
+  constructor(private memberservice : MemberService, private recipeservice : RecipeService ,
+              private route : ActivatedRoute, private toastr : ToastrService) {
 
   }
   ngOnInit(): void {
@@ -49,22 +51,38 @@ export class EditrecipeComponent implements OnInit {
 
   AddIngredient() {
     if(!this.recipe) return;
-    const ingredient : Ingredient = {name : '', id : this.recipe?.ingredients.length+1};
-    this.recipe.ingredients.push(ingredient);
+    const ingredient : Ingredient = { name : '' };
+    this.recipe.ingredients.push(ingredient); 
+    this.editform?.control.markAsDirty()
   }
-  RemoveIngredient(ingredientVar: Ingredient) {
+  
+  DeleteIngredient(ingredient : Ingredient) {
+     if(!this.recipe) return;
+     if(this.recipe.ingredients.length == 1) { 
+      this.toastr.error("Your recipe must have at least 1 ingredient");
+     }
+     const indextoremove = this.recipe.ingredients.findIndex(ing => ing.name == ingredient.name);
+     if(!indextoremove) return;
+     this.editform?.control.markAsDirty()
+     this.recipe.ingredients.splice(indextoremove, 1);
 
-    const ingredientToRemove: Ingredient = { name: ingredientVar.name, id: ingredientVar.id };
 
-    const indexToRemove = this.recipe?.ingredients.findIndex(
-        (ingredient: Ingredient) => ingredient.id === ingredientToRemove.id
-    );
+  }
 
-    if (indexToRemove !== undefined && indexToRemove !== -1) {
-        this.recipe?.ingredients.splice(indexToRemove, 1);
-    }
-}
+  EditRecipe() {
+    if(!this.member) return;
+     this.recipeservice.EditRecipe(this.editform?.value).subscribe({
+        next : () => {
+          this.toastr.success("Recipe Updated Succesfully");
+          this.editform?.reset(this.recipe);
+        },
+        error : error => console.log(error)
+     })
+  }
+  
+  }
+
 
   
-}
+
 

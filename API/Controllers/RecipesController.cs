@@ -1,11 +1,11 @@
 ﻿using API.Data;
 using API.DTOs;
-using API.Entities;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 using System.Security.Claims;
 
 namespace API.Controllers
@@ -38,33 +38,43 @@ namespace API.Controllers
         }
 
         [Authorize]
-        [HttpPut]
-        public async Task<ActionResult> UpdateRecipe(RecipeUpdateDto updateDto)
+        [HttpDelete("{id}")]
+
+        public async Task<ActionResult> DeleteRecipe(int id )
         {
             var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var user = await _userrepo.GetByUsernameAsync(username);
-
-            if (user==null)
+            var recipe = await _context.Recipes.SingleOrDefaultAsync(r => r.Id == id);
+            if (recipe == null) { return NotFound(); }
+            if (user.Recipes.FirstOrDefault(r => r.Id == id) == null)
             {
                 return NotFound();
             }
-            var recipe = await _context.Recipes.SingleOrDefaultAsync(
-                 r => r.title==updateDto.title);
-            var userrecipe = user.Recipes.FirstOrDefault(t => t.title==updateDto.title);
-            if(recipe==null)
-            {
-                return NotFound();
-            }
-            if(recipe != null && userrecipe == null)
-            {
-                return NotFound();
-            }
-
-            _mapper.Map(updateDto , recipe);
-
+            _recipeService.Delete(recipe);
             if (await _recipeService.SaveAllAsync()) { return NoContent(); }
 
-            return BadRequest("Failed to update profile");
+            return BadRequest("Failed to delete recipe");
         }
+
+        [HttpPut]
+
+        public async Task<ActionResult> EditRecipe(RecipeUpdateDto recipeUpdateDto)
+        {
+            var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await _userrepo.GetByUsernameAsync(username);
+            var recipe = await _recipeService.GetRecipeAsync(user, recipeUpdateDto.title);
+            if (recipe==null)
+            {
+                return NotFound("Recipe null");
+            }
+            _mapper.Map(recipeUpdateDto, recipe);
+
+            if (await _recipeService.SaveAllAsync()) { return NoContent(); };
+
+            return BadRequest("Failed to update recipe");
+
+        }
+
+  
     }
 }

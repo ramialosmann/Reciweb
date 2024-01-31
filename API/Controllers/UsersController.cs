@@ -12,11 +12,13 @@ namespace API.Controllers
     {
         private readonly IUserRepository _userrepo;
         private readonly IMapper _mapper;
+        private readonly IRecipeService _recipeService;
 
-        public UsersController(IUserRepository userrepo , IMapper mapper)
+        public UsersController(IUserRepository userrepo , IMapper mapper, IRecipeService recipeService)
         {
             _userrepo=userrepo;
             _mapper=mapper;
+            _recipeService=recipeService;
         }
 
 
@@ -59,6 +61,7 @@ namespace API.Controllers
 
             return BadRequest("Failed to update profile"); 
         }
+
 
 
     }
